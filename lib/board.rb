@@ -1,24 +1,21 @@
-require 'ship'
-class Board
-  attr_reader :cells, :ships
+require_relative 'ship'
 
-  def initialize(size = 10)
-    @cells = Array.new(size) { Array.new(size) }
+class Board
+  attr_reader :ships
+  def initialize
     @ships = []
   end
-
-  def place_ship(ship, x, y, horizontal)
-    @ships << ship
-    if horizontal
-      0.upto(ship.size-1) do |i|
-        cells[x + i][y] = ship
-      end
-    else
-      0.upto(ship.size-1) do |j|
-        cells[x][y+j] = ship
-      end
-    end
+  def place(shipklass, position, direction)
+    @ships << shipklass.new(position, direction)
   end
-
-
 end
+
+# Version 'Skateboard'
+# class Board
+#   def initialize
+#     @ships = []
+#   end
+#   def place(ship)
+#     @ships << ship
+#   end
+# end

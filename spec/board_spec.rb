@@ -1,43 +1,23 @@
 require 'board'
 describe Board do
-  it "has default size 10 by 10 when created" do
-    expect(subject.cells).to eq(Array.new(10) { Array.new(10) })
+  let(:ship) { double :ship }
+  let(:shipklass) { double :shipklass, new: :ship}
+
+  it "can place a ship on it" do
+    expect(subject.place(shipklass, 'D6', :W)).to include(:ship)
   end
 
-  it "has size 5 by 5 when created with parameter 5" do
-    expect(Board.new(5).cells).to eq(Array.new(5) { Array.new(5) })
-  end
-
-  it "has no ships when created" do
-    expect(subject.ships).to be_empty
-  end
-  context "When placing a ship horizontally" do
-    before(:each) do
-      ship = double :ship
-      subject.place_ship(:ship, 0, 0, true)
-    end
-    it "add it to the ship list" do
-      expect(subject.ships).to include(:ship)
-    end
-
-    it "marks the relevant cells as occupied" do
-      expect(subject.cells[0][0]).not_to eq(nil)
-      expect(subject.cells[1][0]).not_to eq(nil)
-    end
-  end
-
-  context "When placing a ship vertically" do
-    before(:each) do
-      ship = double :ship
-      subject.place_ship(:ship, 0, 0, false)
-    end
-    it "add it to the ship list" do
-      expect(subject.ships).to include(:ship)
-    end
-
-    it "marks the relevant cells as occupied" do
-      expect(subject.cells[0][0]).not_to eq(nil)
-      expect(subject.cells[0][1]).not_to eq(nil)
-    end
+  it 'stores the ship placed on the board' do
+    subject.place(shipklass, 'B8', :E)
+    expect(subject.ships).to include(:ship)
   end
 end
+
+# Version 'Skateboard'
+# describe Board do
+#   let(:ship) { double :ship }
+#
+#   it "can place a ship on it" do
+#     expect(subject.place(ship)).to include(ship)
+#   end
+# end
