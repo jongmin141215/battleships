@@ -18,10 +18,14 @@ class Player
     if board.receive_a_hit(coord) == :hit
       @hits << coord
       :hit
-    else
+    elsif board.receive_a_hit(coord) == :miss
       @misses << coord
       :miss
     end
+  end
+
+  def lost?
+    board.all_sunk?
   end
 
 

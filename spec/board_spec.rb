@@ -22,15 +22,21 @@ describe Board do
   end
 
   it "reports if all ships are sunk" do
-    ship = Ship.new('A1', :N)
-    subject.place(ship)
+    ship1 = Ship.new('A1', :N)
+    ship2 = Ship.new('B1', :N)
+    subject.place(ship1)
+    subject.place(ship2)
     subject.receive_a_hit('A1')
+    subject.receive_a_hit('B1')
     expect(subject).to be_all_sunk
   end
 
   it "reports if not all ships are sunk" do
-    ship = Ship.new('A1', :N)
-    subject.place(ship)
+    ship1 = Ship.new('A1', :N)
+    ship2 = Ship.new('B1', :N)
+    subject.place(ship1)
+    subject.place(ship2)
+    subject.receive_a_hit('A1')
     expect(subject).not_to be_all_sunk
   end
 
