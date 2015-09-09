@@ -20,13 +20,13 @@ class Submarine < Ship
 
   def new_pos
     if direction == :N
-      position[0] + (position[1].to_i - 1).to_s
+      position[0] + (position[1..2].to_i - 1).to_s
     elsif direction == :S
       position[0] + (position[1].to_i + 1).to_s
     elsif direction == :W
-      prev(position[0]) + position[1]
+      prev(position[0]) + position[1..2]
     elsif direction == :E
-      position[0].next + position[1]
+      position[0].next + position[1..2]
     end
   end
 
