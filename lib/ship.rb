@@ -13,6 +13,10 @@ class Ship
     @hits += 1
   end
 
+  def sunk?
+    @hits == @size
+  end
+
 end
 
 # Version 'Skateboard'
