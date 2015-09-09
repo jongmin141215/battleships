@@ -13,9 +13,15 @@ class Board
   end
 
   def receive_a_hit(coord)
-    ships.each { |ship| return :hit if ship.position == coord }
+    ships.each do |ship|
+      if ship.position == coord
+        ship.was_hit
+        return :hit
+      end
+    end
     :miss
   end
+
 end
 
 # Version 'Skateboard'

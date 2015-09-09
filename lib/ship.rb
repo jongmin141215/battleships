@@ -1,6 +1,6 @@
 class Ship
 
-  attr_reader :position
+  attr_reader :position, :direction, :size, :hits
 
   def initialize(position, direction)
     @position = position
@@ -8,7 +8,11 @@ class Ship
     @size = 1
     @hits = 0
   end
-  
+
+  def was_hit
+    @hits += 1
+  end
+
 end
 
 # Version 'Skateboard'

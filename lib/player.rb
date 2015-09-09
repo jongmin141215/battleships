@@ -17,8 +17,12 @@ class Player
   def receive_hit(coord)
     if board.receive_a_hit(coord) == :hit
       @hits << coord
+      :hit
     else
       @misses << coord
+      :miss
     end
   end
+
+
 end
