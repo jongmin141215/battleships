@@ -2,10 +2,10 @@ require 'player'
 
 describe Player do
 
-  let(:shipklass) { double :shipklass }
-  let(:ship) { double :ship }
-  let(:boardklass) { double :boardklass, new: board, board: :place }
-  let(:board) { double :board, ships: ship, count: 1 }
+  # let(:shipklass) { double 'Ship', new: :ship }
+  let(:ship) { instance_double('ship') }
+  let(:shipklass) { class_double('Ship') }
+  # let(:board) { double :board }
   #
   # it "can place a ship on the board" do
   #   expect{Player.new(boardklass).place(shipklass, 'E9', :N}.to change(Player.new(boardklass).board.ships.count}.by(1)
@@ -17,22 +17,46 @@ describe Player do
   # end
 
   it "can place a ship on the board" do
-    player = Player.new(Board)
-    expect{player.place(Ship, 'E9', :N)}.to change{player.board.ships.count}.by(1)
+    allow(shipklass).to receive(:new).and_return(ship)
+    expect{subject.place(shipklass, 'E1', :N)}.to change{subject.board.ships.count}.by(1)
+  end
+context "When receive hit" do
+  it "is stored in hits if hit" do
+    # board = double :board
+    # allow(board).to receive(:receive_a_hit).with('E1') { :hit }
+    # allow(shipklass).to receive(:new).and_return(ship)
+    # allow(ship).to receive(:position)
+    subject.place(Ship, 'E1', :N)
+    subject.receive_hit('E1')
+    expect(subject.hits).to include('E1')
   end
 
-  describe "#receive_hit(position)" do
-    context "When hit" do
-      it "displays :hit" do
-        subject.place(Ship, 'C4', :N)
-        expect(subject.receive_hit('C4')).to eq(:hit)
-      end
-    end
-    context "When not hit" do
-      it "displays :miss" do
-        subject.place(Ship, 'C4', :N)
-        expect(subject.receive_hit('B4')).to eq(:miss)
-      end
-    end
+  it "is stored in misses if miss" do
+    # allow(shipklass).to receive(:new).and_return(ship)
+    # allow(ship).to receive(:position)
+    subject.place(Ship, 'E1', :N)
+    subject.receive_hit('A1')
+    expect(subject.misses).to include('A1')
   end
+end
+
+
+
+
+
+
+  # describe "#receive_hit(position)" do
+  #   context "When hit" do
+  #     it "displays :hit" do
+  #       subject.place(Ship, 'C4', :N)
+  #       expect(subject.receive_hit('C4')).to eq(:hit)
+  #     end
+  #   end
+  #   context "When not hit" do
+  #     it "displays :miss" do
+  #       subject.place(Ship, 'C4', :N)
+  #       expect(subject.receive_hit('B4')).to eq(:miss)
+  #     end
+  #   end
+  # end
 end

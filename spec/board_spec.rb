@@ -1,15 +1,20 @@
 require 'board'
 describe Board do
-  let(:ship) { double :ship }
-  let(:shipklass) { double :shipklass, new: ship}
+  let(:ship) { double :ship, position: 'A1' }
 
   it "can place a ship on it" do
-    expect{ subject.place(shipklass, 'D6', :W) }.to change{ subject.ships.count }.by(1)
+    subject.place(ship)
+    expect(subject.ships).to include(ship)
   end
 
-  it 'stores the ship placed on the board' do
-    subject.place(shipklass, 'B8', :E)
-    expect(subject.ships).to include(ship)
+  it "can report :hit" do
+    subject.place(ship)
+    expect(subject.receive_a_hit('A1')).to eq(:hit)
+  end
+
+  it "can report :miss" do
+    subject.place(ship)
+    expect(subject.receive_a_hit('A2')).to eq(:miss)
   end
 end
 
