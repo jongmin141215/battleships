@@ -1,4 +1,5 @@
 class Ship
+  attr_reader :position
   def initialize(position, direction)
     @position = position
     @direction = direction
