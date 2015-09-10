@@ -10,8 +10,8 @@ class Player
     @misses = []
   end
 
-  def place(shipklass, position, direction)
-    board.place(shipklass.new(position, direction))
+  def place(name, size, position, direction)
+    board.place(Boat.new(name, size, position, direction))
   end
 
   def receive_hit(coord)

@@ -1,13 +1,13 @@
 class Boat
 
-  attr_reader :position, :direction, :size, :hits
+  attr_reader :position, :direction, :size, :on_target, :coordinates
 
   def initialize(name, size, position, direction)
     @name = name
     @size = size
     @position = position
     @direction = direction
-    @hits = 0
+    @on_target = 0
     @coordinates = []
 
     size.times do
@@ -29,11 +29,11 @@ class Boat
   end
 
   def was_hit
-    @hits += 1
+    @on_target += 1
   end
 
   def sunk?
-    @hits == @size
+    @on_target == @size
   end
 
 end
