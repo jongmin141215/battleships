@@ -11,6 +11,7 @@ class Boat
     @coordinates = []
 
     size.times do
+      fail 'boat out of bounds' if position[0] > "E" || position[0] < "A" || position[1].to_i > 5 || position[1].to_i == 0
       @coordinates << position
       case direction
         when :N

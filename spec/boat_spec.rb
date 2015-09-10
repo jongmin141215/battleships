@@ -5,6 +5,7 @@ describe Boat do
   let(:ship) { Boat.new('ship', 1, 'A1', :S) }
   let(:submarine) { Boat.new('submarine', 2, 'A1', :S) }
 
+
   it "increases number of hits when hit" do
     expect{ ship.was_hit }.to change { ship.on_target }.by(1)
   end
@@ -18,5 +19,10 @@ describe Boat do
     expect(submarine).to be_sunk
   end
 
+  it "should bring up error if created out of bounds" do
+    expect{Boat.new('battleship', 3, 'A1', :N)}.to raise_error "boat out of bounds"
+  end
+
+  
 
 end
