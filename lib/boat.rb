@@ -1,11 +1,12 @@
-class Ship
+class Boat
 
   attr_reader :position, :direction, :size, :hits
 
-  def initialize(position, direction)
+  def initialize(name, size, position, direction)
+    @name = name
+    @size = size
     @position = position
     @direction = direction
-    @size = 1
     @hits = 0
   end
 
@@ -18,10 +19,3 @@ class Ship
   end
 
 end
-
-# Version 'Skateboard'
-# class Ship
-#   def initialize(position)
-#     @position = position
-#   end
-# end

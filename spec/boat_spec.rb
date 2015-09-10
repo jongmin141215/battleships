@@ -1,8 +1,8 @@
-require 'ship'
+require 'boat'
 
-describe Ship do
+describe Boat do
 
-  let(:ship) { Ship.new('A1', :N) }
+  let(:ship) { Boat.new('ship', 1, 'A1', :S) }
 
   it "increases number of hits when hit" do
     expect{ ship.was_hit }.to change { ship.hits }.by(1)
@@ -18,7 +18,3 @@ describe Ship do
   end
 
 end
-
-# Version 'Skateboard'
-# describe Ship do
-# end
