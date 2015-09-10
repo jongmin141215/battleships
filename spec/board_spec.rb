@@ -1,7 +1,6 @@
 require 'board'
 describe Board do
-  let(:ship) { double :ship }
-  #let(:ship) { double :ship, hit: :miss}
+  let(:ship) { double :ship, coordinates: [] }
 
   it "can place a ship on it" do
     subject.place(ship)
@@ -40,13 +39,11 @@ describe Board do
     expect(subject).not_to be_all_sunk
   end
 
-  # it "raises an error if ships are overlapping" do
-  #   ship = double :ship
-  #   subject.place(ship)
-  #   expect { Boat.new(2, 'B10', :W) }.to raise_error ("Ships overlapping")
-  # end
-
-
+  it "raises an error if ships are overlapping" do
+    ship = Boat.new(2, 'B10', :W)
+    subject.place(ship)
+    expect { subject.place(Boat.new(2, 'B10', :W)) }.to raise_error ("Ship overlapping")
+  end
 end
 
 

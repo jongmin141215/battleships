@@ -9,7 +9,20 @@ class Board
   end
 
   def place(ship)
-    @ships << ship
+    check(ship)
+    ships << ship
+  end
+
+  def check(ship)
+    all_ships = []
+    ships.each do |boat|
+      all_ships << boat.coordinates
+    end
+    ship.coordinates.map do |c|
+      if all_ships.flatten.include?(c)
+        fail 'Ship overlapping'
+      end
+    end
   end
 
   def receive_a_hit(coord)
