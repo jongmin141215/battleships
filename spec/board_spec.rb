@@ -39,6 +39,14 @@ describe Board do
     allow(ship).to receive(:sunk?).and_return(false)
     expect(subject).not_to be_all_sunk
   end
+
+  # it "raises an error if ships are overlapping" do
+  #   ship = double :ship
+  #   subject.place(ship)
+  #   expect { Boat.new(2, 'B10', :W) }.to raise_error ("Ships overlapping")
+  # end
+
+
 end
 
 

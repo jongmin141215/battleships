@@ -1,4 +1,4 @@
-require_relative 'ship'
+require_relative 'boat'
 
 class Board
 
