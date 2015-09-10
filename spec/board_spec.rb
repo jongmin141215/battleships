@@ -1,47 +1,44 @@
 require 'board'
 describe Board do
+  let(:ship) { double :ship }
   #let(:ship) { double :ship, hit: :miss}
 
-
   it "can place a ship on it" do
-    ship = Ship.new('A1', :N)
     subject.place(ship)
     expect(subject.ships).to include(ship)
   end
 
   it "can report :hit" do
-    ship = Ship.new('A1', :N)
     subject.place(ship)
+    allow(ship).to receive(:position).and_return('A1')
+    allow(ship).to receive(:was_hit)
     expect(subject.receive_a_hit('A1')).to eq(:hit)
   end
 
   it "can report :miss" do
-    ship = Ship.new('A1', :N)
     subject.place(ship)
+    allow(ship).to receive(:position).and_return('A1')
+    allow(ship).to receive(:was_hit)
     expect(subject.receive_a_hit('A2')).to eq(:miss)
   end
 
   it "reports if all ships are sunk" do
-    ship1 = Ship.new('A1', :N)
-    ship2 = Ship.new('B1', :N)
-    subject.place(ship1)
-    subject.place(ship2)
+    subject.place(ship)
+    allow(ship).to receive(:position).and_return('A1')
+    allow(ship).to receive(:was_hit)
     subject.receive_a_hit('A1')
-    subject.receive_a_hit('B1')
+    allow(ship).to receive(:sunk?).and_return(true)
     expect(subject).to be_all_sunk
   end
 
   it "reports if not all ships are sunk" do
-    ship1 = Ship.new('A1', :N)
-    ship2 = Ship.new('B1', :N)
-    subject.place(ship1)
-    subject.place(ship2)
-    subject.receive_a_hit('A1')
+    subject.place(ship)
+    allow(ship).to receive(:position).and_return('A1')
+    allow(ship).to receive(:was_hit)
+    subject.receive_a_hit('A2')
+    allow(ship).to receive(:sunk?).and_return(false)
     expect(subject).not_to be_all_sunk
   end
-
-
-
 end
 
 

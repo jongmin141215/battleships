@@ -23,10 +23,9 @@ class Board
   end
 
   def all_sunk?
-    !(ships.any? { |ship| !ship.sunk? })
+    sunk_array = ships.map { |ship| ship.sunk? }
+    sunk_array.include?(false) ? false : true
   end
-
-
 end
 
 # Version 'Skateboard'
@@ -37,12 +36,4 @@ end
 #   def place(ship)
 #     @ships << ship
 #   end
-# end
-
-
-# def all_sunk?
-#   new = ships.map do |ship|
-#     ship.sunk? ? true : false
-#   end
-#   new.include?(false) ? false : true
 # end
