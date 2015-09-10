@@ -12,22 +12,24 @@ describe Board do
   end
 
   it "can report :hit" do
-    subject.place(ship)
+    subject.place("sub", 2, "A1", :S)
     expect(subject.receive_a_hit('A1')).to eq(:hit)
   end
 
   it "can report :miss" do
-    subject.place(ship)
-    expect(subject.receive_a_hit('A2')).to eq(:miss)
+    subject.place("sub", 2, "A1", :S)
+    expect(subject.receive_a_hit('A3')).to eq(:miss)
   end
 
   it "reports if all ships are sunk" do
-    subject.place(ship)
+    subject.place("sub", 1, "A1", :S)
+    subject.receive_a_hit('A1')
     expect(subject.all_sunk?).to eql(true)
   end
 
   it "reports if not all ships are sunk" do
-    subject.place(ship2)
+    subject.place(ship2, 2, "A1", :S)
+    subject.receive_a_hit('A1')
     expect(subject.all_sunk?).to eql(false)
   end
 end

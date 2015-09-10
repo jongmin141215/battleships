@@ -10,8 +10,6 @@ class Player
     @misses = []
   end
 
-
-
   def fire(player, coord)
     if player.board.receive_a_hit(coord) == :hit
        @hits << coord

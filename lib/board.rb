@@ -19,6 +19,11 @@ class Board
       if boat.coordinates.include?(coord)
         boat.was_hit
         @damage << coord
+        if boat.sunk?
+          puts "sunk..."
+        else
+          puts "Not sunk..."
+        end
         return :hit
       end
     end
