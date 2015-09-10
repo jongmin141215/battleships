@@ -1,6 +1,18 @@
 require 'player'
 
 describe Player do
+<<<<<<< HEAD
+=======
+
+  # it "can place a ship on the board" do
+  #   board = double :board
+  #
+  #   shipklass = double :shipklass, new: :ship
+  #   allow(board).to receive(:place).and_return([:ship])
+  #   player = Player.new(board)
+  #   expect(player.place(shipklass, 'A1', :E)).to include(:ship)
+  # end
+>>>>>>> 588a445... Practicing: Added direction & bounds
   context "When hit" do
     it "is stored in hits if hit" do
       board = double :board
