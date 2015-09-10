@@ -3,6 +3,7 @@ require 'boat'
 describe Boat do
 
   let(:ship) { Boat.new('ship', 1, 'A1', :S) }
+  let(:submarine) { Boat.new('submarine', 2, 'A1', :S) }
 
   it "increases number of hits when hit" do
     expect{ ship.was_hit }.to change { ship.hits }.by(1)
@@ -13,8 +14,9 @@ describe Boat do
   end
 
   it "is sunk when it gets hit" do
-    ship.was_hit
-    expect(ship).to be_sunk
+    2.times { submarine.was_hit }
+    expect(submarine).to be_sunk
   end
+
 
 end
