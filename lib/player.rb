@@ -10,14 +10,13 @@ class Player
     @misses = []
   end
 
-  def place(name, size, position, direction)
-    board.place(Boat.new(name, size, position, direction))
-  end
 
-  def receive_hit(coord)
-    if board.receive_a_hit(coord) == :hit
-      @hits << coord
+
+  def fire(player, coord)
+    if player.board.receive_a_hit(coord) == :hit
+       @hits << coord
       :hit
+
     elsif board.receive_a_hit(coord) == :miss
       @misses << coord
       :miss

@@ -1,13 +1,14 @@
 require 'board'
 describe Board do
+
   let(:ship) { double :ship, position: 'A1', sunk?: true,
     coordinates: ['A1'], was_hit: true }
   let(:ship2) { double :ship, position: 'A1', sunk?: false }
-  #let(:ship) { double :ship, hit: :miss}
 
-  it "can place a ship on it" do
-    subject.place(ship)
-    expect(subject.ships).to include(ship)
+
+  it "can place a ship" do
+    subject.place("sub", 2, "A1", :S)
+    expect(subject.ships[0]).to be_kind_of Boat
   end
 
   it "can report :hit" do
