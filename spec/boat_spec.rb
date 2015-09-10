@@ -5,7 +5,7 @@ describe Boat do
   let(:ship) { Boat.new(1, 'A1', :S) }
 
   it "increases number of hits when hit" do
-    expect{ ship.was_hit }.to change { ship.hits }.by(1)
+    expect{ ship.was_hit }.to change { ship.on_target }.by(1)
   end
 
   it "is not sunk when created" do

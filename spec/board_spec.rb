@@ -9,9 +9,15 @@ describe Board do
 
   it "can report :hit" do
     subject.place(ship)
-    allow(ship).to receive(:position).and_return('A1')
+    allow(ship).to receive(:coordinates).and_return('A1')
     allow(ship).to receive(:was_hit)
     expect(subject.receive_a_hit('A1')).to eq(:hit)
+  end
+
+  it "can report :hit when the ship size is greater than 1" do
+    player = Player.new
+    player.place(Boat, 3, 'E1', :S)
+    expect(player.fire(player, 'E2')).to eq(:hit)
   end
 
   it "can report :miss" do

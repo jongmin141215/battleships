@@ -1,12 +1,12 @@
 class Boat
 
-  attr_reader :position, :direction, :size, :hits, :coordinates
+  attr_reader :position, :direction, :size, :on_target, :coordinates
 
   def initialize(size, position, direction)
     @size = size
     @position = position
     @direction = direction
-    @hits = 0
+    @on_target = 0
     ship_position(position)
   end
 
@@ -15,7 +15,7 @@ class Boat
     size.times do
       if position[1..2].to_i < 1 || position[1..2].to_i > 10 || position[0] < 'A' || position[0] > 'J'
         fail "Out of bounds"
-      end    
+      end
       coordinates << position
       case direction
       when :S
@@ -35,11 +35,11 @@ class Boat
   end
 
   def was_hit
-    @hits += 1
+    @on_target += 1
   end
 
   def sunk?
-    @hits == @size
+    on_target == size
   end
 
 end

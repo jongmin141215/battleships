@@ -14,8 +14,8 @@ class Player
     board.place(shipklass.new(size, position, direction))
   end
 
-  def receive_hit(coord)
-    if board.receive_a_hit(coord) == :hit
+  def fire(opponent, coord)
+    if opponent.board.receive_a_hit(coord) == :hit
       @hits << coord
       :hit
     elsif board.receive_a_hit(coord) == :miss

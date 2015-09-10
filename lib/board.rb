@@ -8,6 +8,12 @@ class Board
     @ships = []
   end
 
+  # def grid
+  #   n = (1..10).to_a
+  #   a = ('A'..'J').to_a
+  #   grid = n.map { |n| p a.map { |a| a + n.to_s } }
+  # end
+
   def place(ship)
     check(ship)
     ships << ship
@@ -27,7 +33,7 @@ class Board
 
   def receive_a_hit(coord)
     ships.each do |ship|
-      if ship.position == coord
+      if ship.coordinates.include?(coord)
         ship.was_hit
         return :hit
       end
@@ -40,6 +46,9 @@ class Board
     sunk_array.include?(false) ? false : true
   end
 end
+
+b = Board.new
+b.grid
 
 # Version 'Skateboard'
 # class Board
