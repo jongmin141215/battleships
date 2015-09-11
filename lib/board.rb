@@ -14,21 +14,10 @@ class Board
   #   grid = n.map { |n| p a.map { |a| a + n.to_s } }
   # end
 
-  def place(ship)
-    check(ship)
-    ships << ship
-  end
-
-  def check(ship)
-    all_ships = []
-    ships.each do |boat|
-      all_ships << boat.coordinates
-    end
-    ship.coordinates.map do |c|
-      if all_ships.flatten.include?(c)
-        fail 'Ship overlapping'
-      end
-    end
+  def place(shipklass, size, position, direction)
+    new_ship = shipklass.new(size, position, direction)
+    check(new_ship)
+    ships << new_ship
   end
 
   def receive_a_hit(coord)
@@ -45,10 +34,24 @@ class Board
     sunk_array = ships.map { |ship| ship.sunk? }
     sunk_array.include?(false) ? false : true
   end
+
+  private
+
+  def check(ship)
+    all_ships = []
+    ships.each do |boat|
+      all_ships << boat.coordinates
+    end
+    ship.coordinates.map do |coordinate|
+      if all_ships.flatten.include?(coordinate)
+        fail 'Ship overlapping'
+      end
+    end
+  end
 end
 
-b = Board.new
-b.grid
+# b = Board.new
+# b.grid
 
 # Version 'Skateboard'
 # class Board

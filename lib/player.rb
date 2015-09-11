@@ -4,14 +4,10 @@ class Player
 
   attr_reader :board, :hits, :misses
 
-  def initialize(board = Board.new)
+  def initialize(board = Board.new, my_board = Board.new)
     @board = board
     @hits = []
     @misses = []
-  end
-
-  def place(shipklass, size, position, direction)
-    board.place(shipklass.new(size, position, direction))
   end
 
   def fire(opponent, coord)
